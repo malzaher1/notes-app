@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/home/add-note']">Add Note</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-notes">
+  <ion-list>
+    <ion-item *ngFor="let note of notes" [routerLink]="['/home/view-note', note.id]">
+      <ion-label>
+        <h2>{{ note.title }}</h2>
+        <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
+          ({{ note?.timestamp | date:'medium' }})
+        </span>
+        <p>{{ note.content }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

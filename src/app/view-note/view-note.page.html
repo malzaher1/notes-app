@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ note?.title }}
+      <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
+        ({{ note?.timestamp | date:'medium' }})
+      </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-view-note">
+  <p>{{ note?.content }}</p>
+  <!-- <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p> -->
+</ion-content>

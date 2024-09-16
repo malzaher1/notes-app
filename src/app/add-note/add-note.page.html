@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Note</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Title</ion-label>
+    <ion-input [(ngModel)]="note.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Content</ion-label>
+    <ion-textarea [(ngModel)]="note.content"></ion-textarea>
+  </ion-item>
+  <ion-button expand="full" (click)="addNote()">Add Note</ion-button>
+</ion-content>
