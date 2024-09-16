@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { NoteService } from '../services/note.service';
 import { Note } from '../models/note.model';
-import { Location } from '@angular/common';
-
 
 @Component({
   selector: 'app-view-note',
@@ -12,12 +11,12 @@ import { Location } from '@angular/common';
 })
 export class ViewNotePage implements OnInit {
   note: Note | undefined;
+  isEditing = false;
 
   constructor(
     private route: ActivatedRoute,
     private noteService: NoteService,
     private location: Location
-
   ) {}
 
   ngOnInit() {
@@ -27,5 +26,12 @@ export class ViewNotePage implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  toggleEdit() {
+    if (this.isEditing && this.note) {
+      this.noteService.updateNote(this.note);
+    }
+    this.isEditing = !this.isEditing;
   }
 }
