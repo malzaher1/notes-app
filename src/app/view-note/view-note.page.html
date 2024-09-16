@@ -6,30 +6,15 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <ng-container *ngIf="!isEditing; else editTitle">
-        {{ note?.title }}
-        <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
-          ({{ note?.timestamp | date:'medium' }})
-        </span>
-      </ng-container>
-      <ng-template #editTitle>
-        <ion-input [(ngModel)]="note.title"></ion-input>
-      </ng-template>
+      {{ note?.title }}
+      <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
+        ({{ note?.timestamp | date:'medium' }})
+      </span>
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="toggleEdit()">
-        <ion-icon slot="icon-only" [name]="isEditing ? 'checkmark' : 'create'"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="page-view-note">
-  <ng-container *ngIf="!isEditing; else editContent">
-    <p>{{ note?.content }}</p>
-  </ng-container>
-  <ng-template #editContent>
-    <ion-textarea [(ngModel)]="note.content"></ion-textarea>
-  </ng-template>
-  <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p>
+  <p>{{ note?.content }}</p>
+  <!-- <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p> -->
 </ion-content>
