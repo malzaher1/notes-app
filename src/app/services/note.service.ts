@@ -20,4 +20,11 @@ export class NoteService {
   addNote(note: Note): void {
     this.notes.push(note);
   }
+
+  updateNote(updatedNote: Note): void {
+    const index = this.notes.findIndex(note => note.id === updatedNote.id);
+    if (index !== -1) {
+      this.notes[index] = updatedNote;
+    }
+  }
 }
