@@ -6,21 +6,21 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      {{ note?.title }}
-      <!-- <ion-input [(ngModel)]="note.title" (ngModelChange)="saveNote()" placeholder="Enter title"></ion-input> -->
-      <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
-        ({{ note?.timestamp | date:'medium' }})
+      <!-- {{ note?.title }} -->
+      <ion-input [(ngModel)]="note.title" (ngModelChange)="saveNote()" placeholder="Enter title"></ion-input>
+      <span *ngIf="note.timestamp" style="font-size: small; color: gray;">
+        ({{ note.timestamp | date:'medium' }})
       </span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="page-view-note">
-  <p>{{ note?.content }}</p>
-  <!-- <ion-textarea [(ngModel)]="note.content" (ngModelChange)="saveNote()" placeholder="Enter content"></ion-textarea> -->
+  <!-- <p>{{ note?.content }}</p> -->
+  <ion-textarea [(ngModel)]="note.content" (ngModelChange)="saveNote()" placeholder="Enter content"></ion-textarea>
   <!-- <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p> -->
 
-  <img *ngIf="note?.photo" [src]="note?.photo" alt="Note Photo" />
+  <img *ngIf="note.photo" [src]="note.photo" alt="Note Photo" />
   <ion-button (click)="addPhoto()">Camera</ion-button>
   <ion-button (click)="addPhotoFromGallery()">Add Photo</ion-button>
 

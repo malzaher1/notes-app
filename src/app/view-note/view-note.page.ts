@@ -16,7 +16,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./view-note.page.scss'],
 })
 export class ViewNotePage implements OnInit {
-  note: Note | undefined;
+  // note: Note | undefined;
+  note: Note = { id: 0, title: '', content: '', photo: '' }; // Initialize the note object
+
   // showFullContent: boolean = false;
 
 
@@ -61,7 +63,10 @@ export class ViewNotePage implements OnInit {
 
       if (image.webPath) {
         await this.noteService.addPhotoToNote(this.note.id, image.webPath);
-        this.note = this.noteService.getNoteById(this.note.id); // Refresh the note to display the photo
+        const updatedNote = this.noteService.getNoteById(this.note.id);
+        if (updatedNote) {
+          this.note = updatedNote; // Refresh the note to display the photo
+        }
       }
     }
   }
@@ -78,7 +83,10 @@ export class ViewNotePage implements OnInit {
 
       if (image.webPath) {
         await this.noteService.addPhotoToNote(this.note.id, image.webPath);
-        this.note = this.noteService.getNoteById(this.note.id); // Refresh the note to display the photo
+        const updatedNote = this.noteService.getNoteById(this.note.id);
+        if (updatedNote) {
+          this.note = updatedNote; // Refresh the note to display the photo
+        }
       }
     }
   }
