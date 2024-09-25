@@ -27,4 +27,13 @@ export class NoteService {
       this.notes[index] = updatedNote;
     }
   }
+
+
+  addPhotoToNote(noteId: number, photo: string): void {
+    const note = this.getNoteById(noteId);
+    if (note) {
+      note.photo = photo;
+    }
+  }
+  
 }
