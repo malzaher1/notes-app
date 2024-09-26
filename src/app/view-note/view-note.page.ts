@@ -7,6 +7,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { WeatherService } from '../services/weather.service';
 
 
 
@@ -18,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 export class ViewNotePage implements OnInit {
   // note: Note | undefined;
   note: Note = { id: 0, title: '', content: '', photo: '' }; // Initialize the note object
+  city: string = 'Jeddah'; 
+  weather: any; 
 
   // showFullContent: boolean = false;
 
@@ -25,7 +28,9 @@ export class ViewNotePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private noteService: NoteService,
-    private location: Location
+    private location: Location,
+    private weatherService: WeatherService
+
 
   ) {}
 
@@ -41,6 +46,8 @@ export class ViewNotePage implements OnInit {
       const fetchedNote = this.noteService.getNoteById(noteId);
       if (fetchedNote) {
         this.note = fetchedNote;
+        this.fetchWeather(this.city);
+
       }
     }
   }
@@ -95,6 +102,25 @@ export class ViewNotePage implements OnInit {
     if (this.note) {
       this.noteService.updateNote(this.note);
     }
+  }
+
+
+  // fetchWeather(city: string) {
+  //   this.weatherService.getCurrentWeather(city).subscribe(data => {
+  //     this.weather = data;
+  //   }, error => {
+  //     console.error('Error fetching weather data', error);
+  //   });
+  // }
+
+  fetchWeather(city: string) {
+    console.log(`Fetching weather for city: ${city}`); // Log the city
+    this.weatherService.getCurrentWeather(city).subscribe(data => {
+      this.weather = data;
+      console.log('Weather data:', JSON.stringify(this.weather, null, 2)); // Log the weather data
+    }, error => {
+      console.error('Error fetching weather data', error);
+    });
   }
 
 

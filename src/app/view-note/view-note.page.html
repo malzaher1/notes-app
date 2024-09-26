@@ -17,11 +17,23 @@
 
 <ion-content class="page-view-note">
   <!-- <p>{{ note?.content }}</p> -->
-  <ion-textarea [(ngModel)]="note.content" (ngModelChange)="saveNote()" placeholder="Enter content"></ion-textarea>
+  <ion-textarea class="content-textarea" [autoGrow]="true" [(ngModel)]="note.content" (ngModelChange)="saveNote()" placeholder="Enter content"></ion-textarea>
   <!-- <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p> -->
 
   <img *ngIf="note.photo" [src]="note.photo" alt="Note Photo" />
   <ion-button (click)="addPhoto()">Camera</ion-button>
   <ion-button (click)="addPhotoFromGallery()">Add Photo</ion-button>
+
+  <ion-card *ngIf="weather">
+    <ion-card-header>
+      <ion-card-title>Current Weather</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Temperature: {{ weather.current.temp_c }}°C</p>
+      <p>Condition: {{ weather.current.condition.text }}</p>
+      <img [src]="weather.current.condition.icon" alt="Weather Icon">
+    </ion-card-content>
+  </ion-card>
+
 
 </ion-content>
