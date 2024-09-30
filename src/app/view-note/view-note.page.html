@@ -6,15 +6,35 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      {{ note?.title }}
-      <span *ngIf="note?.timestamp" style="font-size: small; color: gray;">
-        ({{ note?.timestamp | date:'medium' }})
+      <!-- {{ note?.title }} -->
+      <ion-input [(ngModel)]="note.title" (ngModelChange)="saveNote()" placeholder="Enter title"></ion-input>
+      <span *ngIf="note.timestamp" style="font-size: small; color: gray;">
+        ({{ note.timestamp | date:'medium' }})
       </span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content class="page-view-note">
-  <p>{{ note?.content }}</p>
+  <!-- <p>{{ note?.content }}</p> -->
+  <ion-textarea class="content-textarea" [autoGrow]="true" [(ngModel)]="note.content" (ngModelChange)="saveNote()" placeholder="Enter content"></ion-textarea>
   <!-- <p *ngIf="note?.timestamp">Created on: {{ note?.timestamp | date:'medium' }}</p> -->
+
+  <img *ngIf="note.photo" [src]="note.photo" alt="Note Photo" />
+  <ion-button (click)="addPhoto()">Camera</ion-button>
+  <ion-button (click)="addPhotoFromGallery()">Add Photo</ion-button>
+
+  <ion-card *ngIf="weather">
+    <ion-card-header>
+      <ion-card-title>Current Weather</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Temperature: {{ weather.current.temp_c }}°C</p>
+      <p>Condition: {{ weather.current.condition.text }}</p>
+      <img [src]="weather.current.condition.icon" alt="Weather Icon">
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>
